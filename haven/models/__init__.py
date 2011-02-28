@@ -22,4 +22,10 @@ def initialize_sql(engine):
         DBSession.rollback()
 
 def populate():
-    pass
+    from haven.models.account import Account
+    account = Account(name=u'admin', password=u'password',
+                   email=u'noreply@example.com', activated=True,
+                   verify_code='')
+    DBSession.add(account)
+    DBSession.flush()
+    transaction.commit()
