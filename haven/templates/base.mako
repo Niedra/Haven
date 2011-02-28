@@ -5,7 +5,8 @@
 <body>
     <nav>
         <ul>
-            <li><a href="/">root</a></li>
+            <li><a href="/">Index</a></li>
+            <li><a href="/account/list">Accounts List</a></li>
         </ul>
     </nav>
     ${self.body()}

@@ -43,12 +43,20 @@ class Account(Base):
         self._password = unicode(hashed)
 
     @classmethod
+    def by_id(cls, id):
+        return DBSession.query(cls).filter(cls.id == id).first()
+
+    @classmethod
     def by_name(cls, name):
         return DBSession.query(cls).filter(cls.name == name).first()
 
     @classmethod
     def like(cls, name):
         return DBSession.query(cls).filter(cls.name.like('%'+name+'%')).all()
+
+    @classmethod
+    def list(cls):
+        return DBSession.query(cls)
 
     def check_password(self, password):
         return bcrypt.check(self.password, password)
