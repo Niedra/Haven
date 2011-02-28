@@ -2,4 +2,4 @@
 <%def name="title()">
     root
 </%def>
-<p>${root.name}</p>
+<p>root</p>
