@@ -1,0 +1,15 @@
+syntax:glob
+*~
+*.directory
+*.installed.cfg
+*.pyc
+/.coverage
+/development.db
+bin/
+data/
+develop-eggs/
+eggs/
+Haven.egg-info/
+parts/
+build/
+dist/
