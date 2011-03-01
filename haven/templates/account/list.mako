@@ -1,9 +1,7 @@
 <%inherit file="../base.mako"/>
-
 <%def name="title()">
     Haven - Accounts List
 </%def>
-
 <h2>Accounts List</h2>
 
 % if accounts:

@@ -1,8 +1,12 @@
-"""Root handler"""
+"""Account handler"""
+from pyramid.httpexceptions import HTTPFound
+from pyramid.url import route_url
 from pyramid_handlers import action
 
 from webhelpers import paginate
 
+from haven.forms.account import RegistrationForm
+from haven.forms.account import LoginForm
 from haven.lib.paginate import list_users_url_generator
 from haven.models.account import Account
 
@@ -16,6 +20,20 @@ class AccountHandler(object):
         id = self.request.matchdict['id']
         account = Account.by_id(id=id)
         return {'account':account}
+
+    @action(renderer='account/register.mako')
+    def register(self):
+        account = Account(name=None, password='', email=None, activated=True)
+        form = RegistrationForm(self.request.POST)
+        if self.request.method == 'POST' and form.validate():
+            account.name = form.name.data
+            account.password = form.password.data
+            account.email = form.email.data
+            Account.add(account)
+            return HTTPFound(location = route_url('account_view',
+                                                  self.request,
+                                                  id=account.id))
+        return {'form':form}
 
     @action(renderer='account/list.mako')
     def list(self):

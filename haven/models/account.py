@@ -58,5 +58,10 @@ class Account(Base):
     def list(cls):
         return DBSession.query(cls)
 
+    @classmethod
+    def add(cls, account):
+        DBSession.add(account)
+        DBSession.flush() # This is required to set the ID.
+
     def check_password(self, password):
         return bcrypt.check(self.password, password)

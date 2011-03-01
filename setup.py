@@ -17,6 +17,7 @@ requires = [
     'cryptacular',
     'WebError',
     'webhelpers',
+    'WTForms',
     ]
 
 if sys.version_info[:3] < (2,5,0):
