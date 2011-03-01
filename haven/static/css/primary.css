@@ -1,0 +1,151 @@
+
+html, body {
+    background: #404040;
+}
+
+h1 { font-size: 200%; }
+h2 { font-size: 175%; }
+h3 { font-size: 150%; }
+h4 { font-size: 125%; }
+
+/**
+ * Top navbar styles.
+ */
+
+#topbar-container-wrapper { background: #262526; min-height: 2.35em; }
+
+#topbar-container nav { display: inline; }
+
+#topbar-container nav ul {
+    background: #262526;
+    margin: 0;
+    padding: 0.55em 0 0.55em 0;
+    list-style-type: none;
+    list-style-image: none;
+}
+
+#topbar-container nav li {
+    display: inline;
+    padding: 0px 10px 0px 10px;
+	text-shadow: 0 0 20px yellow;
+}
+
+#topbar-container nav a {
+    text-decoration: none;
+    color: white;
+}
+
+#topbar-container nav a:hover {color: pink; }
+
+/**
+ * Header styles.
+ */
+
+#header-container-wrapper {
+    background: #b6d051;
+    background-image: url('../images/header-green-bar.png');
+    background-repeat: repeat-x;
+    height: 8em;
+}
+
+#header-container {
+    background-image: url('../images/header-bg.png');
+    height: 100%;
+}
+
+#header-container img {
+    padding-left: 5px;
+}
+
+/**
+ * Mid navbar styles.
+ */
+
+#midbar-container-wrapper { background: #262526; min-height: 2.35em; }
+
+#midbar-container nav {
+    display: inline;
+    float: left;
+}
+
+#midbar-container nav ul {
+    background: #262526;
+    margin: 0;
+    padding: 0.55em 0 0.55em 0;
+    list-style-type: none;
+    list-style-image: none;
+}
+
+#midbar-container nav li {
+    display: inline;
+    padding: 0px 10px 0px 10px;
+}
+
+#midbar-container nav a {
+    color: white;
+    text-decoration: none;
+}
+
+#midbar-container nav a:active {
+    position: relative;
+    top: 1px;
+}
+
+#midbar-container nav a:hover {color: pink; }
+
+#midbar-userinfo {
+    color: white;
+    float: right;
+    padding: 0.55em 0.55em 0.55em 0;
+}
+
+/**
+ * Main container styles.
+ */
+
+#main-container {
+    background: #fff;
+    min-height: 30em;
+    padding-top: 1em;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+#main article:first-child {
+    padding-top: 0;
+}
+
+#main article:last-child {
+    border-bottom-style: none;
+    border-bottom-width: none;
+}
+
+#main article {
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-color: #CCC;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+/**
+ * Sidebar styles.
+ */
+
+.block {
+    padding-top: 1em;
+}
+
+.block:first-child {
+    padding-top: 0;
+}
+
+/**
+ * Footer container styles.
+ */
+
+#footer-container {
+    color: #fff;
+    padding: 1em 0em 2em 0;
+    text-align: center;
+}
