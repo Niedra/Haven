@@ -5,7 +5,8 @@ class RootHandler(object):
     def __init__(self, request):
         self.request = request
 
-    @action(renderer='root.mako')
+    @action(renderer='index.mako')
     def index(self):
-        """Index view, currently just a static page."""
-        return {}
+        """Index view, currently just session info."""
+        session = self.request.session
+        return {'session':session}

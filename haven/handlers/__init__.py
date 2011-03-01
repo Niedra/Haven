@@ -4,6 +4,11 @@ def add_handlers(config):
     # Root Handler
     config.add_handler('index', '/',
                        '.root:RootHandler', action='index')
+    # Auth Handler
+    config.add_handler('login', '/login',
+                       '.auth:AuthHandler', action='login')
+    config.add_handler('logout', '/logout',
+                       '.auth:AuthHandler', action='logout')
     # Account Handler
     config.add_handler('account_list', '/account/list',
                        '.account:AccountHandler', action='list')
