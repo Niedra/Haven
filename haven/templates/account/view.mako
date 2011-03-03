@@ -4,5 +4,7 @@
 </%def>
 <ul>
     <li><strong>Name:</strong> ${ account.name }</li>
-    <li><strong>Email:</strong> ${ account.email }</li>
+    % if 'auth' in request.session:
+        <li><strong>Email:</strong> ${ account.email }</li>
+    % endif
 </ul>
