@@ -47,7 +47,7 @@
     <div id="header-container-wrapper">
     <div id="header-container" class="container_12">
         <header>
-            <a title="Home" href="/"><img title="Dark Horizion" src="${request.static_url('haven:static/images/logo.png')}"></a>
+            <a title="Home" href="${request.application_url}"><img title="Dark Horizion" src="${request.static_url('haven:static/images/logo.png')}"></a>
         </header>
     </div>
     </div>
@@ -58,15 +58,15 @@
     <div id="midbar-container" class="container_12">
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/account/list">Accounts List</a></li>
+                <li><a href="${request.application_url}">Home</a></li>
+                <li><a href="${request.application_url}/account/list">Accounts List</a></li>
             </ul>
         </nav>
         <div id="midbar-userinfo">
             % if 'auth' in request.session:
-                <p>Logged in as <a href="/account/${request.session['auth']['id']}">${request.session['auth']['name']}</a> (<a href="#">Logout</a>)</p>
+                <p>Logged in as <a href="/account/${request.session['auth']['id']}">${request.session['auth']['name']}</a> (<a href="${request.application_url}/logout">Logout</a>)</p>
             % else:
-                <p>You are not logged in.</p>
+                <p>You are not logged in. (<a href="${request.application_url}/login">Login</a>)</p>
             % endif
         </div>
     </div>
