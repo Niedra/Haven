@@ -11,12 +11,13 @@ class AdminHandler(object):
 
     @action(renderer='admin/activate.mako')
     def activate(self):
-        """ Activate accounts """
+        """ Activate accounts. Allows the admin to manually activate accounts
+        as an alternative to email verification."""
         if 'id' in self.request.matchdict:
             id = self.request.matchdict['id']
-            account = Account.by_id(id=id)
-            account.activated = True
-            Account.add(account)
+            inactive_account = Account.by_id(id=id)
+            inactive_account.activated = True
+            Account.add(inactive_account)
             return HTTPFound(location = route_url('admin_activate_list',
                                                   self.request))
 
