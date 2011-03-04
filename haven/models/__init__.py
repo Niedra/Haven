@@ -24,8 +24,8 @@ def initialize_sql(engine):
 def populate():
     from haven.models.account import Account
     account = Account(name=u'admin', password=u'password',
-                   email=u'noreply@example.com', activated=True,
-                   verify_code=u'')
+                   email=u'noreply@example.com', activated=True, 
+                   is_admin = True, verify_code=u'')
     DBSession.add(account)
     DBSession.flush()
     transaction.commit()

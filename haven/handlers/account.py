@@ -23,7 +23,8 @@ class AccountHandler(object):
 
     @action(renderer='account/register.mako')
     def register(self):
-        account = Account(name=None, password='', email=None, activated=True)
+        account = Account(name=None, password='', email=None, activated=False,
+                          is_admin = False)
         form = RegistrationForm(self.request.POST)
         if self.request.method == 'POST' and form.validate():
             account.name = form.name.data

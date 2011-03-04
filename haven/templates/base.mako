@@ -96,6 +96,19 @@
                     <li><a href="#">Logout</a></li>
                 </ul>
             </div>
+
+            % if 'auth' in request.session:
+            % if request.session['auth']['is_admin']:
+            <div class="block">
+                <h2>Admin Panel</h2>
+                <ul>
+                    <li><a href="/admin/activate">Activate</a></li>
+                    <li><a href="#">Stuff</a></li>
+                    <li><a href="#">Stuff</a></li>
+                </ul>
+            </div>
+            % endif
+            % endif
         </div>
 
         <div class="clear"></div>

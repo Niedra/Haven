@@ -20,7 +20,9 @@ class AuthHandler(object):
         if self.request.method == 'POST' and form.validate():
             account = Account.by_name(name=form.name.data)
             if account and account.check_password(form.password.data):
-                authsession = {'id':account.id, 'name': account.name}
+                # TODO: Storing ACL info in the session is insecure.
+                authsession = {'id':account.id, 'name': account.name,
+                               'is_admin' : account.is_admin}
                 session["auth"] = authsession
                 session.save()
                 return HTTPFound(location = route_url('index', self.request))

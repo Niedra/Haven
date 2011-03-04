@@ -20,15 +20,17 @@ class Account(Base):
     name = Column(Unicode(255), unique=True)
     email = Column(Unicode(255), unique=True)
     activated = Column(Boolean, default=False)
+    is_admin = Column(Boolean, default=True)
     verify_code = Column(Unicode(20))
 
     _password = Column(Unicode(255))
 
-    def __init__(self, name, password, email, activated, verify_code=None):
+    def __init__(self, name, password, email, activated, is_admin, verify_code=None):
         self.name = name
         self.password = password
         self.email = email
         self.activated = activated
+        self.is_admin = is_admin
         self.verify_code = verify_code
 
     @hybrid_property
@@ -49,6 +51,10 @@ class Account(Base):
     @classmethod
     def by_name(cls, name):
         return DBSession.query(cls).filter(cls.name == name).first()
+
+    @classmethod
+    def by_inactivated(cls):
+        return DBSession.query(cls).filter(cls.activated == False).all()
 
     @classmethod
     def like(cls, name):
