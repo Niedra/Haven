@@ -16,6 +16,8 @@ def add_handlers(config):
                        '.account:AccountHandler', action='register')
     config.add_handler('account_view', '/account/{id}',
                        '.account:AccountHandler', action='view')
+    config.add_handler('account_edit', '/account/{id}/edit',
+                       '.account:AccountHandler', action='edit')
     # Admin Handler
     config.add_handler('admin_activate_list', '/admin/activate',
                        '.admin:AdminHandler', action='activate')

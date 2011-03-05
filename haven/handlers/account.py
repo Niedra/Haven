@@ -7,6 +7,7 @@ from webhelpers import paginate
 
 from haven.forms.account import RegistrationForm
 from haven.forms.account import LoginForm
+from haven.forms.account import EditForm
 from haven.lib.paginate import list_users_url_generator
 from haven.models.account import Account
 
@@ -46,3 +47,19 @@ class AccountHandler(object):
                                     items_per_page=10,
                                     url=list_users_url_generator)
         return {'currentPage':currentPage, 'accounts':currentPage.items}
+
+    @action(renderer='account/edit.mako')
+    def edit(self):
+        id = self.request.matchdict['id']
+        account = Account.by_id(id=id)
+        form = EditForm(self.request.POST)
+        if self.request.method == 'POST' and form.validate():
+            if form.password.data != '':
+                account.password = form.password.data
+            if form.email.data != '':
+                account.email = form.email.data
+            Account.add(account)
+            return HTTPFound(location = route_url('account_view',
+                                                  self.request,
+                                                  id=account.id))
+        return {'account':account, 'form':form}
