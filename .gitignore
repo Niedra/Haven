@@ -5,6 +5,7 @@ syntax:glob
 *.pyc
 /.coverage
 /development.db
+/Haven.db
 bin/
 data/
 develop-eggs/
