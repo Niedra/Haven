@@ -5,18 +5,21 @@ from sqlalchemy import Column
 from sqlalchemy import Boolean
 from sqlalchemy import Integer
 from sqlalchemy import Unicode
+from sqlalchemy import Binary
 
 from sqlalchemy.ext.hybrid import hybrid_property
 
 from haven.models import Base
 from haven.models import DBSession
+from haven.lib.uuid import MYUUID
 
 bcrypt = cryptacular.bcrypt.BCRYPTPasswordManager()
 
 class Account(Base):
     """Account model"""
     __tablename__ = 'accounts'
-    id = Column(Integer, primary_key=True)
+    import uuid
+    id = Column(Binary(16), primary_key=True, default=uuid.uuid4().bytes)
     name = Column(Unicode(255), unique=True)
     email = Column(Unicode(255), unique=True)
     activated = Column(Boolean, default=False)

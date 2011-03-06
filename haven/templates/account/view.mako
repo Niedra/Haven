@@ -1,6 +1,6 @@
 <%inherit file="../base.mako"/>
 <%def name="title()">
-    Haven - View Account ${ account.id }
+    Haven - View Account 
 </%def>
 <ul>
     <li><strong>Name:</strong> ${ account.name }</li>

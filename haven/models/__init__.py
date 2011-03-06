@@ -17,7 +17,7 @@ def initialize_sql(engine):
     Base.metadata.bind = engine
     Base.metadata.create_all(engine)
     try:
-        populate()
+        pass
     except IntegrityError:
         DBSession.rollback()
 

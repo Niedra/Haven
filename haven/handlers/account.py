@@ -4,6 +4,7 @@ from pyramid.url import route_url
 from pyramid_handlers import action
 
 from webhelpers import paginate
+import uuid
 
 from haven.forms.account import RegistrationForm
 from haven.forms.account import LoginForm
@@ -18,8 +19,10 @@ class AccountHandler(object):
     @action(renderer='account/view.mako')
     def view(self):
         """View a user's account page."""
-        id = self.request.matchdict['id']
+        id = uuid.UUID(self.request.matchdict['id']).bytes
         account = Account.by_id(id=id)
+        # TODO: pass account.id as uuid.UUID object
+        # or change it in view
         return {'account':account}
 
     @action(renderer='account/register.mako')
@@ -32,9 +35,10 @@ class AccountHandler(object):
             account.password = form.password.data
             account.email = form.email.data
             Account.add(account)
+            id = uuid.UUID(bytes=account.id)
             return HTTPFound(location = route_url('account_view',
                                                   self.request,
-                                                  id=account.id))
+                                                  id=id))
         return {'form':form}
 
     @action(renderer='account/list.mako')
@@ -50,7 +54,7 @@ class AccountHandler(object):
 
     @action(renderer='account/edit.mako')
     def edit(self):
-        id = self.request.matchdict['id']
+        id = uuid.UUID(self.request.matchdict['id']).bytes
         account = Account.by_id(id=id)
         form = EditForm(self.request.POST)
         if self.request.method == 'POST' and form.validate():
@@ -59,7 +63,8 @@ class AccountHandler(object):
             if form.email.data != '':
                 account.email = form.email.data
             Account.add(account)
+            id = uuid.UUID(bytes=account.id)
             return HTTPFound(location = route_url('account_view',
                                                   self.request,
-                                                  id=account.id))
+                                                  id=id))
         return {'account':account, 'form':form}
