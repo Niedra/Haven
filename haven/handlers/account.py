@@ -21,8 +21,6 @@ class AccountHandler(object):
         """View a user's account page."""
         id = uuid.UUID(self.request.matchdict['id']).bytes
         account = Account.by_id(id=id)
-        # TODO: pass account.id as uuid.UUID object
-        # or change it in view
         return {'account':account}
 
     @action(renderer='account/register.mako')

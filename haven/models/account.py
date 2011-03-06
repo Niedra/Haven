@@ -11,7 +11,6 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 from haven.models import Base
 from haven.models import DBSession
-from haven.lib.uuid import MYUUID
 
 bcrypt = cryptacular.bcrypt.BCRYPTPasswordManager()
 

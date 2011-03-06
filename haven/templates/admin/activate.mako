@@ -1,4 +1,5 @@
 <%inherit file="../base.mako"/>
+<%import uuid %>
 <%def name="title()">
     Haven - Activate Accounts
 </%def>
@@ -13,9 +14,9 @@
     </tr>
     % for account in accounts:
         <tr>
-            <td>${account.id}</td>
-            <td><a href="/account/${account.id}">${account.name}</a></td>
-            <td><a href="/admin/activate/${account.id}">Activate</a></td>
+            <td>${uuid.UUID(bytes=account.id)}</td>
+            <td><a href="/account/${uuid.UUID(bytes=account.id)}">${account.name}</a></td>
+            <td><a href="/admin/activate/${uuid.UUID(bytes=account.id)}">Activate</a></td>
         </tr>
     % endfor
 </table>

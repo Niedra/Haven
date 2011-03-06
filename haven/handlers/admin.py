@@ -3,6 +3,8 @@ from pyramid.httpexceptions import HTTPFound
 from pyramid.url import route_url
 from pyramid_handlers import action
 
+import uuid
+
 from haven.models.account import Account
 
 class AdminHandler(object):
@@ -14,7 +16,7 @@ class AdminHandler(object):
         """ Activate accounts. Allows the admin to manually activate accounts
         as an alternative to email verification."""
         if 'id' in self.request.matchdict:
-            id = self.request.matchdict['id']
+            id = uuid.UUID(self.request.matchdict['id']).bytes
             inactive_account = Account.by_id(id=id)
             inactive_account.activated = True
             Account.add(inactive_account)
