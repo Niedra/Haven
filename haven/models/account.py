@@ -1,5 +1,6 @@
 import cryptacular.bcrypt
 import transaction
+import uuid
 
 from sqlalchemy import Column
 from sqlalchemy import Boolean
@@ -26,16 +27,19 @@ class Account(Base):
     email = Column(Unicode(255), unique=True)
     activated = Column(Boolean, default=False)
     date_created = Column(DateTime, default=datetime.now())
+    date_updated = Column(DateTime, default=datetime.now())
     is_admin = Column(Boolean, default=True)
     verify_code = Column(Unicode(20))
 
     _password = Column(Unicode(255))
 
-    def __init__(self, name, password, email, activated, is_admin, verify_code=None):
+    def __init__(self, name, password, email, activated, is_admin,
+                 date_updated=datetime.now(), verify_code=None):
         self.name = name
         self.password = password
         self.email = email
         self.activated = activated
+        self.date_updated = date_updated
         self.is_admin = is_admin
         self.verify_code = verify_code
 

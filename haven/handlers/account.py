@@ -5,6 +5,7 @@ from pyramid_handlers import action
 
 from webhelpers import paginate
 import uuid
+from datetime import datetime
 
 from haven.forms.account import RegistrationForm
 from haven.forms.account import LoginForm
@@ -60,6 +61,8 @@ class AccountHandler(object):
                 account.password = form.password.data
             if form.email.data != '':
                 account.email = form.email.data
+            if form.password.data != '' or form.email.data != '':
+                account.date_updated = datetime.now()
             Account.add(account)
             id = uuid.UUID(bytes=account.id)
             return HTTPFound(location = route_url('account_view',

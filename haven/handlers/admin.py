@@ -4,6 +4,7 @@ from pyramid.url import route_url
 from pyramid_handlers import action
 
 import uuid
+from datetime import datetime
 
 from haven.models.account import Account
 
@@ -19,6 +20,7 @@ class AdminHandler(object):
             id = uuid.UUID(self.request.matchdict['id']).bytes
             inactive_account = Account.by_id(id=id)
             inactive_account.activated = True
+            inactive_account.date_updated = datetime.now()
             Account.add(inactive_account)
             return HTTPFound(location = route_url('admin_activate_list',
                                                   self.request))
