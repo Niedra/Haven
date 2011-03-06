@@ -4,6 +4,7 @@ from pyramid.url import route_url
 from pyramid_handlers import action
 
 from webhelpers import paginate
+import uuid
 
 from haven.forms.account import LoginForm
 from haven.models.account import Account
@@ -21,7 +22,7 @@ class AuthHandler(object):
             account = Account.by_name(name=form.name.data)
             if account and account.check_password(form.password.data):
                 # TODO: Storing ACL info in the session is insecure.
-                authsession = {'id':account.id, 'name': account.name,
+                authsession = {'id':uuid.UUID(bytes=account.id), 'name': account.name,
                                'is_admin' : account.is_admin}
                 session["auth"] = authsession
                 session.save()
