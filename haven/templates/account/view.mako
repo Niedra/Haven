@@ -4,6 +4,7 @@
 </%def>
 <ul>
     <li><strong>Name:</strong> ${ account.name }</li>
+    <li><strong>Created:</strong> ${ account.date_created.strftime("%A, %d. %B %Y %I:%M%p") }</li>
     <li><strong>Status:</strong>
         % if account.activated:
             Active

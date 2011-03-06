@@ -6,11 +6,14 @@ from sqlalchemy import Boolean
 from sqlalchemy import Integer
 from sqlalchemy import Unicode
 from sqlalchemy import Binary
+from sqlalchemy import DateTime
 
 from sqlalchemy.ext.hybrid import hybrid_property
 
 from haven.models import Base
 from haven.models import DBSession
+
+from datetime import datetime
 
 bcrypt = cryptacular.bcrypt.BCRYPTPasswordManager()
 
@@ -22,6 +25,7 @@ class Account(Base):
     name = Column(Unicode(255), unique=True)
     email = Column(Unicode(255), unique=True)
     activated = Column(Boolean, default=False)
+    date_created = Column(DateTime, default=datetime.now())
     is_admin = Column(Boolean, default=True)
     verify_code = Column(Unicode(20))
 
